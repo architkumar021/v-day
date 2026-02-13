@@ -372,6 +372,39 @@ h1 {
     line-height: 1.6;
 }
 
+.love-note {
+    margin-top: 30px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+    text-align: left;
+    animation: fadeSlideIn 1s ease 1.2s both;
+}
+
+.love-note h3 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.9rem;
+    color: #ff9fba;
+    margin-bottom: 15px;
+}
+
+.love-note p {
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.8;
+    margin-bottom: 14px;
+}
+
+.love-note__signature {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffc2d1;
+}
+
 .countdown {
     display: flex;
     justify-content: center;

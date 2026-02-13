@@ -41,8 +41,8 @@ function createFloatingHearts() {
 }
 
 function startCountdown() {
-    // Valentine's Day 2026
-    const valentines = new Date('2026-02-14T19:00:00')
+    // Valentine's Day 2026 at 12:00 AM local time
+    const valentines = new Date('2026-02-14T00:00:00')
     
     function update() {
         const now = new Date()
