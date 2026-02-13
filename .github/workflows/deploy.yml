@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+      - 'feature/**'
+      - 'release/**'
+      - 'v-day-work'
   workflow_dispatch:
 
 permissions:
@@ -17,6 +20,8 @@ concurrency:
 
 jobs:
   deploy:
+    # Only run if triggered by repo owner/admin (not forks or external contributors)
+    if: github.repository_owner == 'architkumar021'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
