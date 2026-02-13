@@ -3,30 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yay! 🎉</title>
+    <title>You Said Yes! 💕</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 </head>
-<body>
-    <div class="hearts-bg"></div>
+<body class="yes-page">
+    <div class="stars-bg"></div>
+    <div class="floating-hearts" id="floating-hearts"></div>
 
     <div class="container yes-container">
-        <h1 class="yes-title">Knew you would say yes! 🎉</h1>
+        <div class="love-letter">
+            <h1 class="yes-title">I Knew You'd Say Yes! 🎉</h1>
 
-        <div class="gif-container">
-            <img id="cat-gif" src="https://media.tenor.com/eNHbizSfVb0AAAAj/lovemode-cute.gif" alt="celebrating">
+            <div class="gif-container">
+                <img id="mood-gif" src="https://media.tenor.com/kkCLSF8xpfYAAAAi/tkthao219-bubududu.gif" alt="celebrating love">
+            </div>
+
+            <p class="yes-message">You just made me the happiest person in the universe! 💖</p>
+            <p class="yes-submessage">Every love story is beautiful, but ours is my favorite ✨</p>
         </div>
 
-        <p class="yes-message">You just made me the happiest person! 💕</p>
+        <div class="date-card">
+            <h3>Our Valentine's Date 💑</h3>
+            <p>Get ready for the most romantic day ever! I have something special planned just for us...</p>
+            <div class="countdown" id="countdown">
+                <div class="countdown-item">
+                    <span class="countdown-number" id="days">0</span>
+                    <span class="countdown-label">Days</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="hours">0</span>
+                    <span class="countdown-label">Hours</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="mins">0</span>
+                    <span class="countdown-label">Mins</span>
+                </div>
+            </div>
+        </div>
     </div>
 
     <audio id="bg-music" loop>
         <source src="music/background.mp3" type="audio/mpeg">
     </audio>
 
-    <button id="music-toggle" onclick="toggleMusic()" title="Toggle music">🔊</button>
+    <button id="music-toggle" onclick="toggleMusic()" title="Toggle music">🎵</button>
 
     <script src="yes-script.js"></script>
 </body>

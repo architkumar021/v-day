@@ -3,33 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will you be my Valentine? 💕</title>
+    <title>A Special Question For You ✨</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="hearts-bg"></div>
+    <div class="stars-bg"></div>
+    <div class="floating-hearts" id="floating-hearts"></div>
 
     <div class="container">
-        <h1>Will you be my Valentine? 💕</h1>
+        <div class="love-letter">
+            <p class="opener">Hey Beautiful,</p>
+            <h1>Will You Be My Valentine? 💝</h1>
+            <p class="subtitle">I've been waiting to ask you this...</p>
+        </div>
 
         <div class="gif-container">
-            <img id="cat-gif" src="https://media.tenor.com/EBV7OT7ACfwAAAAj/u-u-qua-qua-u-quaa.gif" alt="cute character">
+            <img id="mood-gif" src="https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif" alt="cute bear">
         </div>
 
-        <div class="buttons">
-            <button id="yes-btn" onclick="handleYesClick()">Yes</button>
-            <button id="no-btn" onclick="handleNoClick()">No</button>
+        <div class="response-area">
+            <div id="message-bubble" class="message-bubble"></div>
+            <div class="buttons">
+                <button id="yes-btn" onclick="handleYesClick()">Yes, I'd love to! 💕</button>
+                <button id="no-btn" onclick="handleNoClick()">Hmm, let me think...</button>
+            </div>
         </div>
-        <div id="tease-toast"></div>
+
+        <div class="love-meter">
+            <span>Love Meter:</span>
+            <div class="meter-bar">
+                <div class="meter-fill" id="love-meter"></div>
+            </div>
+            <span id="meter-text">💗</span>
+        </div>
     </div>
 
     <audio id="bg-music" loop autoplay muted>
         <source src="music/background.mp3" type="audio/mpeg">
     </audio>
 
-    <button id="music-toggle" onclick="toggleMusic()" title="Toggle music">🔊</button>
+    <button id="music-toggle" onclick="toggleMusic()" title="Toggle music">🎵</button>
 
     <script src="script.js"></script>
 </body>
