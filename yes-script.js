@@ -1,52 +1,115 @@
 let musicPlaying = false
+const hearts = ['💕', '💗', '💖', '💝', '💓', '❤️', '💘', '💞', '✨', '🌟', '💫']
 
 window.addEventListener('load', () => {
     launchConfetti()
+    createFloatingHearts()
+    startCountdown()
 
-    // Autoplay music (works since user clicked Yes to get here)
+    // Autoplay music
     const music = document.getElementById('bg-music')
-    music.volume = 0.3
+    music.volume = 0.4
     music.play().catch(() => {})
     musicPlaying = true
-    document.getElementById('music-toggle').textContent = '🔊'
+    document.getElementById('music-toggle').textContent = '🎵'
+    
+    // Continuous confetti bursts
+    setInterval(() => {
+        confetti({
+            particleCount: 20,
+            spread: 60,
+            origin: { x: Math.random(), y: Math.random() * 0.5 },
+            colors: ['#ff6b9d', '#ff8fab', '#ffc2d1', '#fff', '#ffdf00']
+        })
+    }, 3000)
 })
 
+function createFloatingHearts() {
+    const container = document.getElementById('floating-hearts')
+    for (let i = 0; i < 20; i++) {
+        setTimeout(() => {
+            const heart = document.createElement('span')
+            heart.className = 'heart'
+            heart.textContent = hearts[Math.floor(Math.random() * hearts.length)]
+            heart.style.left = Math.random() * 100 + '%'
+            heart.style.animationDuration = (5 + Math.random() * 5) + 's'
+            heart.style.animationDelay = Math.random() * 3 + 's'
+            heart.style.fontSize = (1.2 + Math.random() * 1.5) + 'rem'
+            container.appendChild(heart)
+        }, i * 200)
+    }
+}
+
+function startCountdown() {
+    // Valentine's Day 2026 at 12:00 AM local time
+    const valentines = new Date('2026-02-14T00:00:00')
+    
+    function update() {
+        const now = new Date()
+        const diff = valentines - now
+        
+        if (diff <= 0) {
+            document.getElementById('days').textContent = '💖'
+            document.getElementById('hours').textContent = '💖'
+            document.getElementById('mins').textContent = '💖'
+            return
+        }
+        
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24))
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+        const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
+        
+        document.getElementById('days').textContent = days
+        document.getElementById('hours').textContent = hours
+        document.getElementById('mins').textContent = mins
+    }
+    
+    update()
+    setInterval(update, 60000)
+}
+
 function launchConfetti() {
-    const colors = ['#ff69b4', '#ff1493', '#ff85a2', '#ffb3c1', '#ff0000', '#ff6347', '#fff', '#ffdf00']
-    const duration = 6000
+    const colors = ['#ff6b9d', '#ff8fab', '#ffc2d1', '#fff', '#ffdf00', '#ff69b4']
+    const duration = 8000
     const end = Date.now() + duration
 
-    // Initial big burst
+    // Big initial burst
     confetti({
-        particleCount: 150,
-        spread: 100,
-        origin: { x: 0.5, y: 0.3 },
+        particleCount: 200,
+        spread: 120,
+        origin: { x: 0.5, y: 0.4 },
         colors
     })
 
-    // Continuous side cannons
+    // Heart-shaped confetti from sides
     const interval = setInterval(() => {
         if (Date.now() > end) {
             clearInterval(interval)
             return
         }
 
+        // Left cannon
         confetti({
-            particleCount: 40,
+            particleCount: 50,
             angle: 60,
-            spread: 55,
-            origin: { x: 0, y: 0.6 },
-            colors
+            spread: 70,
+            origin: { x: 0, y: 0.7 },
+            colors,
+            shapes: ['circle', 'square'],
+            scalar: 1.2
         })
 
+        // Right cannon
         confetti({
-            particleCount: 40,
+            particleCount: 50,
             angle: 120,
-            spread: 55,
-            origin: { x: 1, y: 0.6 },
-            colors
+            spread: 70,
+            origin: { x: 1, y: 0.7 },
+            colors,
+            shapes: ['circle', 'square'],
+            scalar: 1.2
         })
-    }, 300)
+    }, 400)
 }
 
 function toggleMusic() {
@@ -58,6 +121,6 @@ function toggleMusic() {
     } else {
         music.play()
         musicPlaying = true
-        document.getElementById('music-toggle').textContent = '🔊'
+        document.getElementById('music-toggle').textContent = '🎵'
     }
 }

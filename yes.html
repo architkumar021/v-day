@@ -3,30 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yay! 🎉</title>
+    <title>You Said Yes! 💕</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 </head>
-<body>
-    <div class="hearts-bg"></div>
+<body class="yes-page">
+    <div class="stars-bg"></div>
+    <div class="floating-hearts" id="floating-hearts"></div>
 
     <div class="container yes-container">
-        <h1 class="yes-title">Knew you would say yes! 🎉</h1>
+        <div class="love-letter">
+            <h1 class="yes-title">I Knew You'd Say Yes, Shivangi! 🎉</h1>
 
-        <div class="gif-container">
-            <img id="cat-gif" src="https://media.tenor.com/eNHbizSfVb0AAAAj/lovemode-cute.gif" alt="celebrating">
+            <div class="gif-container">
+                <img id="mood-gif" src="https://media.tenor.com/kkCLSF8xpfYAAAAi/tkthao219-bubududu.gif" alt="celebrating love">
+            </div>
+
+            <p class="yes-message">Shivangi, you just made me the happiest man in this galaxy! 💖</p>
+            <p class="yes-submessage">No fancy reservations needed — just you, me, hugs, and our endless conversations. Forever yours, Archit.</p>
         </div>
 
-        <p class="yes-message">You just made me the happiest person! 💕</p>
+        <div class="date-card">
+            <h3>Our Date Night Plan 💞</h3>
+            <ul class="date-list">
+                <li>🍿 Movie marathon of our sappy comfort films</li>
+                <li>🍝 Feast on our all-time favourite food combo</li>
+                <li>🌆 Late-night drive with our favorite playlist</li>
+            </ul>
+            <p class="date-note">Countdown to Feb 14, 12:00 AM — when the cuddles officially begin:</p>
+            <div class="countdown" id="countdown">
+                <div class="countdown-item">
+                    <span class="countdown-number" id="days">0</span>
+                    <span class="countdown-label">Days</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="hours">0</span>
+                    <span class="countdown-label">Hours</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="mins">0</span>
+                    <span class="countdown-label">Mins</span>
+                </div>
+            </div>
+        </div>
+
+        <section class="love-note">
+            <h3>Happy Valentine’s Day, My Loveuuu ❤️</h3>
+            <p>Life feels lighter, happier, and more meaningful because you’re in it. Thank you for being my partner, my calm in chaos, and the person who makes ordinary days feel special. I’m grateful for your love, your patience, and all the little moments we share that mean everything to me.</p>
+            <p>No matter where life takes us, I promise to keep choosing you — today and always. I love you more than words can say. 💖</p>
+            <span class="love-note__signature">Forever yours, Archit</span>
+        </section>
     </div>
 
     <audio id="bg-music" loop>
         <source src="music/background.mp3" type="audio/mpeg">
     </audio>
 
-    <button id="music-toggle" onclick="toggleMusic()" title="Toggle music">🔊</button>
+    <button id="music-toggle" onclick="toggleMusic()" title="Toggle music">🎵</button>
 
     <script src="yes-script.js"></script>
 </body>
