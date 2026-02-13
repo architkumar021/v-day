@@ -13,25 +13,25 @@ const moodGifs = [
 // Unique romantic messages
 const noButtonTexts = [
     "Hmm, let me think...",
-    "Wait really? 🥺",
-    "Are you sure about that?",
-    "My heart is breaking... 💔",
-    "Please reconsider... 🥹",
-    "I'll wait forever for you",
-    "Don't break my heart...",
-    "One more chance? 🙏",
-    "You can't escape love! 💕"
+    "Wait really, Shivangi? 🥺",
+    "Are you super sure about that?",
+    "You're breaking my pookie heart 💔",
+    "Please reconsider, Mrs. Gupta-to-be?",
+    "I'll wait forever for you, Shivangi",
+    "Don't make me unleash the puppy eyes...",
+    "One more chance? I brought gulab jamuns 🙏",
+    "You can't escape our love bubble! 💕"
 ]
 
 // Bubble messages that appear
 const bubbleMessages = [
-    "I've been thinking about you all day... 💭",
-    "You make my heart skip a beat 💓",
+    "I've been thinking about you all day, Shivangi... 💭",
+    "You make my heart skip a beat every single time 💓",
     "Every moment with you is magical ✨",
-    "I can't imagine life without you 🌙",
-    "You're my favorite person in the world 🌟",
+    "Life without you?<br>Impossible mission 🌙",
+    "You're my favorite person in the whole universe 🌟",
     "My love for you grows every day 🌹",
-    "You complete me in every way 💑",
+    "You complete my chaos perfectly 💑",
     "Forever isn't long enough with you 💍"
 ]
 
@@ -41,6 +41,7 @@ let noClickCount = 0
 let runawayEnabled = false
 let musicPlaying = true
 let loveMeterValue = 50
+let yesAlreadyClicked = false
 
 const moodGif = document.getElementById('mood-gif')
 const yesBtn = document.getElementById('yes-btn')
@@ -95,11 +96,17 @@ function toggleMusic() {
 }
 
 function handleYesClick() {
-    // Add sparkle effect
-    yesBtn.style.transform = 'scale(1.2)'
+    if (yesAlreadyClicked) return
+    yesAlreadyClicked = true
+
+    // Instant celebration
+    yesBtn.classList.add('accepted')
+    showBubbleMessage("Knew you'd say yes, Shivangi! 💗 Grab your bag, we're going on an adventure.")
+    updateLoveMeter(true, true)
+    addBurstHearts(true)
     setTimeout(() => {
         window.location.href = 'yes.html'
-    }, 300)
+    }, 600)
 }
 
 function showBubbleMessage(msg) {
@@ -107,11 +114,13 @@ function showBubbleMessage(msg) {
     messageBubble.classList.add('show')
 }
 
-function updateLoveMeter(increase) {
-    if (increase) {
-        loveMeterValue = Math.min(100, loveMeterValue + 15)
+function updateLoveMeter(increase, maxOut = false) {
+    if (maxOut) {
+        loveMeterValue = 100
+    } else if (increase) {
+        loveMeterValue = Math.min(100, loveMeterValue + 18)
     } else {
-        loveMeterValue = Math.max(20, loveMeterValue - 5)
+        loveMeterValue = Math.max(30, loveMeterValue - 4)
     }
     loveMeter.style.width = loveMeterValue + '%'
     
@@ -140,45 +149,47 @@ function handleNoClick() {
     const bubbleIndex = Math.min(noClickCount - 1, bubbleMessages.length - 1)
     showBubbleMessage(bubbleMessages[bubbleIndex])
 
-    // Grow the Yes button
+    // Grow the Yes button (but keep approachable)
     const currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize)
-    yesBtn.style.fontSize = `${Math.min(currentSize * 1.25, 48)}px`
-    const padY = Math.min(16 + noClickCount * 4, 50)
-    const padX = Math.min(32 + noClickCount * 8, 100)
+    yesBtn.style.fontSize = `${Math.min(currentSize * 1.18, 44)}px`
+    const padY = Math.min(16 + noClickCount * 3, 42)
+    const padX = Math.min(32 + noClickCount * 6, 90)
     yesBtn.style.padding = `${padY}px ${padX}px`
 
-    // Shrink No button
+    // Shrink No button, but never fully hide it
     if (noClickCount >= 2) {
         const noSize = parseFloat(window.getComputedStyle(noBtn).fontSize)
-        noBtn.style.fontSize = `${Math.max(noSize * 0.88, 10)}px`
-        noBtn.style.opacity = Math.max(0.5, 1 - noClickCount * 0.08)
+        noBtn.style.fontSize = `${Math.max(noSize * 0.9, 14)}px`
+        noBtn.style.opacity = Math.max(0.6, 1 - noClickCount * 0.05)
     }
 
     // Change GIF
     const gifIndex = Math.min(noClickCount, moodGifs.length - 1)
     swapGif(moodGifs[gifIndex])
 
-    // Enable runaway after 4 clicks
-    if (noClickCount >= 4 && !runawayEnabled) {
+    // Enable gentle runaway after several tries
+    if (noClickCount >= 6 && !runawayEnabled) {
         enableRunaway()
         runawayEnabled = true
+        showBubbleMessage("Fineee, I'll let the No button jog away... but only a little 😤")
     }
     
     // Add extra hearts when clicking no
     addBurstHearts()
 }
 
-function addBurstHearts() {
-    for (let i = 0; i < 5; i++) {
+function addBurstHearts(big = false) {
+    const total = big ? 12 : 5
+    for (let i = 0; i < total; i++) {
         const heart = document.createElement('span')
         heart.className = 'heart'
         heart.textContent = hearts[Math.floor(Math.random() * hearts.length)]
-        heart.style.left = (40 + Math.random() * 20) + '%'
-        heart.style.bottom = '30%'
-        heart.style.animationDuration = '3s'
-        heart.style.fontSize = '2rem'
+        heart.style.left = (35 + Math.random() * 30) + '%'
+        heart.style.bottom = big ? '35%' : '30%'
+        heart.style.animationDuration = big ? '4s' : '3s'
+        heart.style.fontSize = big ? '2.4rem' : '2rem'
         floatingHearts.appendChild(heart)
-        setTimeout(() => heart.remove(), 3000)
+        setTimeout(() => heart.remove(), big ? 4000 : 3000)
     }
 }
 
